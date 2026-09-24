@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>bentwood nursery</title>
+
+  <!-- Load the Special Elite typewriter font. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+
+  <style>
+    /* =========================================================
+       CSS = controls how the website LOOKS.
+       HTML below controls what the website SAYS.
+       ========================================================= */
+
+    * { box-sizing: border-box; }
+
+    /* The whole page */
+    body {
+      margin: 0;
+      background: #f5f2e9;
+      color: #111;
+      font-family: "Special Elite", monospace;
+      font-size: 17px;
+      line-height: 1.55;
+    }
+
+    /* Links */
+    a { color: #111; text-decoration: underline; text-underline-offset: 4px; }
+    a:hover { background: #111; color: #f5f2e9; }
+
+    /* Keeps the content from getting too wide on big monitors. */
+    .site {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 35px;
+    }
+
+    /* HEADER */
+    header {
+      border-bottom: 1px solid #111;
+      padding: 28px 0 20px;
+    }
+
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .site-name { font-size: 28px; }
+    nav a { margin-left: 28px; text-decoration: none; }
+
+    /* HERO / TOP OF PAGE */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 45px;
+      padding: 55px 0;
+      border-bottom: 1px solid #111;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: 55px;
+      font-weight: normal;
+      line-height: 1.05;
+      margin: 0 0 30px;
+    }
+
+    .hero p { max-width: 480px; }
+
+    /* Temporary photo box. No AI image is used. */
+    .photo-placeholder,
+    .plant-image {
+      border: 1px solid #111;
+      background: repeating-linear-gradient(
+        45deg,
+        #eeeae0,
+        #eeeae0 10px,
+        #e5e1d6 10px,
+        #e5e1d6 20px
+      );
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .photo-placeholder { width: 100%; aspect-ratio: 16 / 9; }
+
+    /* GENERAL SECTIONS */
+    section {
+      padding: 55px 0;
+      border-bottom: 1px solid #111;
+    }
+
+    h2 {
+      font-size: 34px;
+      font-weight: normal;
+      margin: 0 0 30px;
+    }
+
+    /* PLANT GRID */
+    .plants {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 20px;
+    }
+
+    .plant { min-width: 0; }
+
+    .plant-image {
+      aspect-ratio: 1 / 1;
+      margin-bottom: 14px;
+    }
+
+    .plant-name { font-size: 19px; margin-bottom: 5px; }
+    .plant-description { font-size: 14px; line-height: 1.5; }
+    .plant-price { margin-top: 12px; font-size: 14px; }
+
+    /* ABOUT */
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 55px;
+    }
+
+    .about-image { min-height: 350px; }
+
+    /* ORDERING / FAQ / CONTACT */
+    .info {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 50px;
+    }
+
+    .info h3 {
+      font-size: 24px;
+      font-weight: normal;
+      margin-top: 0;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 35px 0 60px;
+      font-size: 14px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* MOBILE: makes the site work on phones. */
+    @media (max-width: 800px) {
+      .site { padding: 0 20px; }
+      .header-inner { display: block; }
+      nav { margin-top: 20px; }
+      nav a { margin: 0 18px 0 0; }
+      .hero { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 45px; }
+      .plants { grid-template-columns: repeat(2, 1fr); }
+      .about, .info { grid-template-columns: 1fr; }
+      footer { display: block; }
+    }
+
+    @media (max-width: 500px) {
+      .plants { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="site">
+
+  <!-- =======================================================
+       HEADER
+       Change the site name and menu here.
+       ======================================================= -->
+  <header>
+    <div class="header-inner">
+      <!-- CHANGE THIS TEXT -->
+      <div class="site-name">bentwood nursery</div>
+
+      <nav>
+        <a href="#home">home</a>
+        <a href="#plants">plants</a>
+        <a href="#about">about</a>
+        <a href="#ordering">ordering</a>
+        <a href="#contact">contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- =======================================================
+       HERO / TOP OF PAGE
+       ======================================================= -->
+  <section class="hero" id="home">
+    <div>
+      <!-- CHANGE YOUR MAIN HEADLINE HERE -->
+      <h1>
+        subversive<br>
+        nursery.
+      </h1>
+
+      <!-- CHANGE YOUR INTRODUCTION HERE -->
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      </p>
+
+      <!-- Change the words if you want; keep href="#plants" to jump to plants. -->
+      <p><a href="#plants">browse plants →</a></p>
+    </div>
+
+    <!-- =====================================================
+         PHOTO PLACEHOLDER
+         Replace this whole div with your own image later.
+         Example:
+
+         <img src="images/nursery.jpg" alt="Bentwood Nursery">
+         ===================================================== -->
+    <div class="photo-placeholder">
+      YOUR NURSERY PHOTO
+    </div>
+  </section>
+
+  <!-- =======================================================
+       PLANTS
+       Copy an entire <article class="plant"> block to add
+       another plant.
+       ======================================================= -->
+  <section id="plants">
+    <h2>featured plants</h2>
+
+    <div class="plants">
+
+      <!-- PLANT 1 -->
+      <article class="plant">
+        <!-- Replace this placeholder with your photo later. -->
+        <div class="plant-image">YOUR PHOTO</div>
+        <!-- CHANGE PLANT NAME -->
+        <div class="plant-name">elderberry</div>
+        <!-- CHANGE DESCRIPTION -->
+        <div class="plant-description">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        </div>
+        <!-- CHANGE PRICE -->
+        <div class="plant-price">$12 &nbsp; bare root</div>
+      </article>
+
+      <!-- PLANT 2 -->
+      <article class="plant">
+        <div class="plant-image">YOUR PHOTO</div>
+        <div class="plant-name">pawpaw</div>
+        <div class="plant-description">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        </div>
+        <div class="plant-price">$15 &nbsp; bare root</div>
+      </article>
+
+      <!-- PLANT 3 -->
+      <article class="plant">
+        <div class="plant-image">YOUR PHOTO</div>
+        <div class="plant-name">chestnut</div>
+        <div class="plant-description">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        </div>
+        <div class="plant-price">$15 &nbsp; bare root</div>
+      </article>
+
+      <!-- PLANT 4 -->
+      <article class="plant">
+        <div class="plant-image">YOUR PHOTO</div>
+        <div class="plant-name">nanking cherry</div>
+        <div class="plant-description">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        </div>
+        <div class="plant-price">$12 &nbsp; bare root</div>
+      </article>
+
+      <!-- PLANT 5 -->
+      <article class="plant">
+        <div class="plant-image">YOUR PHOTO</div>
+        <div class="plant-name">persimmon</div>
+        <div class="plant-description">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        </div>
+        <div class="plant-price">$12 &nbsp; bare root</div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- =======================================================
+       ABOUT
+       ======================================================= -->
+  <section id="about">
+    <div class="about">
+
+      <!-- Another real-photo placeholder. -->
+      <div class="photo-placeholder about-image">
+        YOUR NURSERY PHOTO
+      </div>
+
+      <div>
+        <h2>about</h2>
+
+        <!-- CHANGE THIS TEXT -->
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+
+        <!-- CHANGE THIS TEXT TOO -->
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =======================================================
+       ORDERING / FAQ / CONTACT
+       ======================================================= -->
+  <section id="ordering">
+    <div class="info">
+
+      <div>
+        <h3>ordering</h3>
+        <!-- CHANGE THIS TEXT -->
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+      </div>
+
+      <div>
+        <h3>faq</h3>
+        <!-- CHANGE THIS TEXT -->
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+      </div>
+
+      <div id="contact">
+        <h3>contact</h3>
+        <!-- CHANGE THIS TEXT -->
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+
+        <!-- =================================================
+             CHANGE BOTH EMAIL ADDRESSES BELOW.
+             Keep "mailto:" before the first one.
+             ================================================= -->
+        <p>
+          <a href="mailto:YOUR-EMAIL@example.com">
+            YOUR-EMAIL@example.com
+          </a>
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <!-- CHANGE THIS -->
+    <div>bentwood nursery</div>
+    <!-- CHANGE THIS -->
+    <div>maine</div>
+  </footer>
+
+</div>
+
+</body>
+</html>
