@@ -1,4 +1,110 @@
 <!DOCTYPE html>
+<!--
+================================================================
+BENTWOOD NURSERY — BEGINNER'S MAP
+================================================================
+
+You do NOT need to understand HTML to edit this website.
+
+EASIEST RULE:
+
+  Change words = edit the HTML below the <body> tag.
+  Change appearance = edit the CSS inside <style>.
+  Add photos = put photos in an "images" folder and use <img>.
+
+If you are looking for something, use your browser/editor search
+(Ctrl+F on Windows, Command+F on Mac) and search for the label
+mentioned in the comments.
+
+---------------------------------------------------------------
+QUICK LOOK-AND-FEEL CHEAT SHEET
+---------------------------------------------------------------
+
+Search for these words in this file:
+
+  background:       page background color
+  color:            main text color
+  font-family:      font
+  font-size:        text size
+  max-width:        maximum page width
+  padding:          space INSIDE something
+  margin:           space OUTSIDE something
+  gap:              space between grid items
+  border:           lines around things
+  grid-template:    number/size of columns
+  aspect-ratio:     shape of photos
+
+Examples:
+
+  font-size: 17px;       make this 20px for bigger text
+  gap: 20px;             make this 40px for more space
+  padding: 55px 0;       make this 30px 0 for less vertical space
+  border: 1px solid #111;  change #111 to another color
+
+---------------------------------------------------------------
+ADDING A PHOTO — THE SIMPLE VERSION
+---------------------------------------------------------------
+
+1. In your GitHub repository, make a folder named:
+
+       images
+
+2. Upload your photo into that folder.
+
+3. Suppose the photo is called:
+
+       pawpaw.jpg
+
+4. The code should look like this:
+
+       <img
+         class="plant-image"
+         src="images/pawpaw.jpg"
+         alt="Pawpaw seedling"
+       >
+
+The filename in src MUST exactly match the uploaded filename.
+
+For a normal photo, you can use .jpg, .jpeg, or .png.
+
+The alt text is a short description of the photo. It also helps
+people using screen readers.
+
+---------------------------------------------------------------
+IMPORTANT IMAGE TIP
+---------------------------------------------------------------
+
+DO NOT use a computer path such as:
+
+   C:\Users\Pat\Pictures\pawpaw.jpg
+
+That path only exists on your computer. GitHub needs the image
+inside the repository. Use a path like:
+
+   images/pawpaw.jpg
+
+---------------------------------------------------------------
+ADDING ANOTHER PLANT
+---------------------------------------------------------------
+
+Find:
+
+   <article class="plant">
+
+Copy one entire article block and paste it underneath the others.
+Then change its name, description, price, and image.
+
+---------------------------------------------------------------
+IF YOU BREAK SOMETHING
+---------------------------------------------------------------
+
+Don't panic. Most mistakes are a missing >, a missing quote, or
+a filename that does not match. Undo your last change and try
+again.
+
+================================================================
+-->
+
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -11,6 +117,40 @@
   <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
 
   <style>
+    /*
+    ================================================================
+    CSS BEGINNER MAP
+    ================================================================
+
+    body              = entire page
+    .site             = main page width
+    header            = top bar
+    .site-name        = nursery name
+    nav               = menu
+    .hero             = big top section
+    .hero h1          = giant headline
+    .photo-placeholder = large temporary photo box
+    section           = each major horizontal section
+    h2                = large section headings
+    .plants           = plant grid
+    .plant            = one plant card
+    .plant-image      = plant photo
+    .plant-name       = plant name
+    .plant-description= plant description
+    .plant-price      = plant price
+    .about            = about section layout
+    .info             = ordering/FAQ/contact layout
+    footer             = bottom of page
+
+    When you see something like:
+
+        .plant-name { ... }
+
+    it means: "change the appearance of every plant name."
+
+    ================================================================
+    */
+
     /* =========================================================
        CSS = controls how the website LOOKS.
        HTML below controls what the website SAYS.
@@ -33,6 +173,7 @@
     a:hover { background: #111; color: #f5f2e9; }
 
     /* Keeps the content from getting too wide on big monitors. */
+    /* >>> LOOK AND FEEL: overall page width and side margins <<< */
     .site {
       max-width: 1200px;
       margin: 0 auto;
@@ -40,6 +181,7 @@
     }
 
     /* HEADER */
+    /* >>> LOOK AND FEEL: top header height and bottom line <<< */
     header {
       border-bottom: 1px solid #111;
       padding: 28px 0 20px;
@@ -51,10 +193,12 @@
       align-items: baseline;
     }
 
+    /* >>> LOOK AND FEEL: nursery name size <<< */
     .site-name { font-size: 28px; }
     nav a { margin-left: 28px; text-decoration: none; }
 
     /* HERO / TOP OF PAGE */
+    /* >>> LOOK AND FEEL: top section columns, spacing, and height <<< */
     .hero {
       display: grid;
       grid-template-columns: 1fr 1.5fr;
@@ -64,6 +208,7 @@
       align-items: center;
     }
 
+    /* >>> LOOK AND FEEL: giant headline <<< */
     .hero h1 {
       font-size: 55px;
       font-weight: normal;
@@ -75,6 +220,7 @@
 
     /* Temporary photo box. No AI image is used. */
     .photo-placeholder,
+    /* >>> LOOK AND FEEL: shape/size of plant photo boxes <<< */
     .plant-image {
       border: 1px solid #111;
       background: repeating-linear-gradient(
@@ -106,6 +252,7 @@
     }
 
     /* PLANT GRID */
+    /* >>> LOOK AND FEEL: number of plant columns <<< */
     .plants {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
@@ -124,6 +271,7 @@
     .plant-price { margin-top: 12px; font-size: 14px; }
 
     /* ABOUT */
+    /* >>> LOOK AND FEEL: photo/text arrangement in About <<< */
     .about {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -133,6 +281,7 @@
     .about-image { min-height: 350px; }
 
     /* ORDERING / FAQ / CONTACT */
+    /* >>> LOOK AND FEEL: ordering/FAQ/contact columns <<< */
     .info {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -202,8 +351,8 @@
     <div>
       <!-- CHANGE YOUR MAIN HEADLINE HERE -->
       <h1>
-        I shit<br>
-        myself.
+        subversive<br>
+        nursery.
       </h1>
 
       <!-- CHANGE YOUR INTRODUCTION HERE -->
@@ -223,6 +372,21 @@
 
          <img src="images/nursery.jpg" alt="Bentwood Nursery">
          ===================================================== -->
+    <!--
+    >>> TO ADD YOUR REAL PHOTO <<<
+
+    Put your photo in the repository folder called "images".
+    Then replace the div below with an img tag like this:
+
+      <img
+        class="photo-placeholder"
+        src="images/nursery.jpg"
+        alt="Bentwood Nursery plants"
+      >
+
+    The class keeps the same photo sizing/style.
+    Change nursery.jpg to your actual filename.
+    -->
     <div class="photo-placeholder">
       YOUR NURSERY PHOTO
     </div>
@@ -241,6 +405,12 @@
       <!-- PLANT 1 -->
       <article class="plant">
         <!-- Replace this placeholder with your photo later. -->
+        <!--
+          >>> ADD A REAL PHOTO HERE <<<
+          Upload the photo to images/, then use:
+          <img class="plant-image" src="images/plant-name.jpg" alt="Plant name">
+          Keep the filename exactly the same as the uploaded file.
+          -->
         <div class="plant-image">YOUR PHOTO</div>
         <!-- CHANGE PLANT NAME -->
         <div class="plant-name">elderberry</div>
@@ -254,6 +424,12 @@
 
       <!-- PLANT 2 -->
       <article class="plant">
+        <!--
+          >>> ADD A REAL PHOTO HERE <<<
+          Upload the photo to images/, then use:
+          <img class="plant-image" src="images/plant-name.jpg" alt="Plant name">
+          Keep the filename exactly the same as the uploaded file.
+          -->
         <div class="plant-image">YOUR PHOTO</div>
         <div class="plant-name">pawpaw</div>
         <div class="plant-description">
@@ -264,6 +440,12 @@
 
       <!-- PLANT 3 -->
       <article class="plant">
+        <!--
+          >>> ADD A REAL PHOTO HERE <<<
+          Upload the photo to images/, then use:
+          <img class="plant-image" src="images/plant-name.jpg" alt="Plant name">
+          Keep the filename exactly the same as the uploaded file.
+          -->
         <div class="plant-image">YOUR PHOTO</div>
         <div class="plant-name">chestnut</div>
         <div class="plant-description">
@@ -274,6 +456,12 @@
 
       <!-- PLANT 4 -->
       <article class="plant">
+        <!--
+          >>> ADD A REAL PHOTO HERE <<<
+          Upload the photo to images/, then use:
+          <img class="plant-image" src="images/plant-name.jpg" alt="Plant name">
+          Keep the filename exactly the same as the uploaded file.
+          -->
         <div class="plant-image">YOUR PHOTO</div>
         <div class="plant-name">nanking cherry</div>
         <div class="plant-description">
@@ -284,6 +472,12 @@
 
       <!-- PLANT 5 -->
       <article class="plant">
+        <!--
+          >>> ADD A REAL PHOTO HERE <<<
+          Upload the photo to images/, then use:
+          <img class="plant-image" src="images/plant-name.jpg" alt="Plant name">
+          Keep the filename exactly the same as the uploaded file.
+          -->
         <div class="plant-image">YOUR PHOTO</div>
         <div class="plant-name">persimmon</div>
         <div class="plant-description">
