@@ -9,7 +9,7 @@
   <!-- Load the Special Elite typewriter font. -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces&display=swap" rel="stylesheet">
 
   <style>
     /* =========================================================
@@ -24,7 +24,7 @@
       margin: 0;
       background: #f5f2e9;
       color: #111;
-      font-family: "Special Elite", monospace;
+      font-family: "Fraunces", serif;
       font-size: 17px;
       line-height: 1.55;
     }
@@ -89,10 +89,22 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      padding: 20px;
+      padding: 0px;
     }
 
-    .photo-placeholder { width: 100%; aspect-ratio: 16 / 9; }
+    .photo-placeholder { width: 50%; aspect-ratio: 16 / 9; }
+
+    img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover; /* Crops the edges of the image so it fills the 200x200 box perfectly */
+}
+
+
+    .responsive-img {
+      max-width: 100%; /* Prevents the image from overflowing its container */
+      height: auto;    /* Maintains the original aspect ratio so it doesn't distort */
+    }
 
     /* GENERAL SECTIONS */
     section {
@@ -109,16 +121,27 @@
     /* PLANT GRID */
     .plants {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 20px;
     }
 
     .plant { min-width: 0; }
 
-    .plant-image {
-      aspect-ratio: 1 / 1;
-      margin-bottom: 14px;
-    }
+   /* 1. Make the wrapper a perfect square box */
+.plant-image {
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  overflow: hidden; /* Keeps everything cleanly inside the square */
+  margin-bottom: 10px;
+}
+
+/* 2. Force the actual image inside to fill that box completely */
+.plant-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Fills the square perfectly without stretching the plums */
+}
 
     .plant-name { font-size: 19px; margin-bottom: 5px; }
     .plant-description { font-size: 14px; line-height: 1.5; }
@@ -221,10 +244,10 @@
          Replace this whole div with your own image later.
          Example:
 
-         <img src="images/nursery.jpg" alt="Bentwood Nursery">
+         <img src="images/bentwood gate.HEIC" alt="Bentwood Gate">
          ===================================================== -->
-    <div class="photo-placeholder">
-      YOUR NURSERY PHOTO
+    <div class="img">
+      <img src="images/sorbuscropped.jpg" alt="Bentwood Gate">
     </div>
   </section>
 
@@ -234,19 +257,19 @@
        another plant.
        ======================================================= -->
   <section id="plants">
-    <h2>2026 fall plant availability</h2>
+    <h2>2026 fall plant availability list + info</h2>
 
     <div class="plants">
 
       <!-- PLANT 1 -->
       <article class="plant">
         <!-- Replace this placeholder with your photo later. -->
-        <div class="plant-image">YOUR PHOTO</div>
+        <div class="plant-image"><img src="images/elderfruit.jpg" alt="Elderberries"></div>
         <!-- CHANGE PLANT NAME -->
         <div class="plant-name">elderberry</div>
         <!-- CHANGE DESCRIPTION -->
         <div class="plant-description">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Only girls buy elderberry fr fr
         </div>
         <!-- CHANGE PRICE -->
         <div class="plant-price">$12 &nbsp; bare root</div>
@@ -254,43 +277,105 @@
 
       <!-- PLANT 2 -->
       <article class="plant">
-        <div class="plant-image">YOUR PHOTO</div>
+        <div class="plant-image"><img src="images/pawpawtree.jpg" alt="Baby Pawpaws"></div>
         <div class="plant-name">pawpaw</div>
         <div class="plant-description">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          overhyped weirdo fruit
         </div>
-        <div class="plant-price">$15 &nbsp; bare root</div>
+        <div class="plant-price"><s>$15 &nbsp; bare root</s> sold out!</div>
       </article>
 
       <!-- PLANT 3 -->
       <article class="plant">
-        <div class="plant-image">YOUR PHOTO</div>
+        <div class="plant-image"><img src="images/Chestnuts.jpg" alt="Air prune chestnuts"><</div>
         <div class="plant-name">chestnut</div>
         <div class="plant-description">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          guaranteed to die in like 25 years
         </div>
         <div class="plant-price">$15 &nbsp; bare root</div>
       </article>
 
       <!-- PLANT 4 -->
       <article class="plant">
-        <div class="plant-image">YOUR PHOTO</div>
+        <div class="plant-image"><img src="images/nankingbed.jpg" alt="Beach Plum fruiting"></div>
         <div class="plant-name">nanking cherry</div>
         <div class="plant-description">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          wtf is a nanking cherry
         </div>
         <div class="plant-price">$12 &nbsp; bare root</div>
       </article>
 
       <!-- PLANT 5 -->
       <article class="plant">
-        <div class="plant-image">YOUR PHOTO</div>
+        <div class="plant-image"><img src="images/persimmon.jpg" alt="Beach Plum fruiting"></div>
         <div class="plant-name">persimmon</div>
         <div class="plant-description">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          no one knows what these are
         </div>
         <div class="plant-price">$12 &nbsp; bare root</div>
       </article>
+
+       <!-- PLANT 6 -->
+      <article class="plant">
+        <div class="plant-image">YOUR PHOTO</div>
+        <div class="plant-name">Hazelnut</div>
+        <div class="plant-description">
+          If you don't buy this,  you're gay
+        </div>
+        <div class="plant-price">$12 &nbsp; bare root</div>
+      </article>
+
+       <!-- PLANT 7 -->
+      <article class="plant">
+        <div class="plant-image"><img src="images/shagbarkpotted.jpg" alt="potted shagbarks"></div>
+        <div class="plant-name">Shagbark Hickory</div>
+        <div class="plant-description">
+          Let's be real. No one wants to plant a hickory.
+        </div>
+        <div class="plant-price">$10 &nbsp; bare root</div>
+      </article>
+
+      <!-- PLANT 8-->
+      <article class="plant">
+        <div class="plant-image"><img src="images/Beach Plum.jpg" alt="Beach Plum fruiting"></div>
+        <div class="plant-name">Beach Plum</div>
+        <div class="plant-description">
+          Like regular plums, but notably worse
+        </div>
+        <div class="plant-price">$10 &nbsp; bare root</div>
+      </article>
+
+       <!-- PLANT 9-->
+      <article class="plant">
+        <div class="plant-image"><img src="images/scarletcurlswillow.jpg" alt="Dense willow leaves"></div>
+        <div class="plant-name">Willows</div>
+        <div class="plant-description">
+          alien plants
+        </div>
+        <div class="plant-price">$10 &nbsp; bare root</div>
+      </article>
+
+  <!-- PLANT 10-->
+      <article class="plant">
+        <div class="plant-image"><img src="images/siberianpeach.jpg" alt="Baby Siberian C Peach plants in an air prune bed."></div>
+        <div class="plant-name">Siberian C Peach</div>
+        <div class="plant-description">
+          alien plants
+        </div>
+        <div class="plant-price">$10 &nbsp; bare root</div>
+      </article>
+
+
+  <!-- PLANT11-->
+      <article class="plant">
+        <div class="plant-image"><img src="images/blackwalnuts.jpg" alt="black walnut nuts"></div>
+        <div class="plant-name">Black Walnut</div>
+        <div class="plant-description">
+          alien plants
+        </div>
+        <div class="plant-price">$10 &nbsp; bare root</div>
+      </article>
+
 
     </div>
   </section>
@@ -301,10 +386,7 @@
   <section id="about">
     <div class="about">
 
-      <!-- Another real-photo placeholder. -->
-      <div class="photo-placeholder about-image">
-        YOUR NURSERY PHOTO
-      </div>
+    
 
       <div>
         <h2>about</h2>
@@ -317,8 +399,7 @@
 
         <!-- CHANGE THIS TEXT TOO -->
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          PLUM FIGHTER
         </p>
       </div>
     </div>
@@ -343,8 +424,7 @@
         <h3>faq</h3>
         <!-- CHANGE THIS TEXT -->
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          pawpaws are for dadjean
         </p>
       </div>
 
