@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Permaculture nursery of edible perennial plants to help craft your food ecosystem.
+</title>
+
+  <!-- Load the Special Elite typewriter font. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces&display=swap" rel="stylesheet">
+
+  <style>
+    /* =========================================================
+       CSS = controls how the website LOOKS.
+       HTML below controls what the website SAYS.
+       ========================================================= */
+
+    * { box-sizing: border-box; }
+
+    /* The whole page */
+    body {
+      margin: 0;
+      background: #f5f2e9;
+      color: #111;
+      font-family: "Fraunces", serif;
+      font-size: 17px;
+      line-height: 1.55;
+    }
+
+    /* Links */
+    a { color: #111; text-decoration: underline; text-underline-offset: 4px; }
+    a:hover { background: #111; color: #f5f2e9; }
+
+    /* Keeps the content from getting too wide on big monitors. */
+    .site {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 35px;
+    }
+
+    /* HEADER */
+    header {
+      border-bottom: 1px solid #111;
+      padding: 28px 0 20px;
+    }
+
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .site-name { font-size: 28px; }
+    nav a { margin-left: 28px; text-decoration: none; }
+
+    /* HERO / TOP OF PAGE */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 45px;
+      padding: 55px 0;
+      border-bottom: 1px solid #111;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: 55px;
+      font-weight: normal;
+      line-height: 1.05;
+      margin: 0 0 30px;
+    }
+
+    .hero p { max-width: 480px; }
+
+    /* Temporary photo box. No AI image is used. */
+    .photo-placeholder,
+    .plant-image {
+      border: 1px solid #111;
+      background: repeating-linear-gradient(
+        45deg,
+        #eeeae0,
+        #eeeae0 10px,
+        #e5e1d6 10px,
+        #e5e1d6 20px
+      );
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0px;
+    }
+
+    .photo-placeholder { width: 50%; aspect-ratio: 16 / 9; }
+
+    img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover; /* Crops the edges of the image so it fills the 200x200 box perfectly */
+}
+
+
+    .responsive-img {
+      max-width: 100%; /* Prevents the image from overflowing its container */
+      height: auto;    /* Maintains the original aspect ratio so it doesn't distort */
+    }
+
+    /* GENERAL SECTIONS */
+    section {
+      padding: 55px 0;
+      border-bottom: 1px solid #111;
+    }
+
+    h2 {
+      font-size: 34px;
+      font-weight: normal;
+      margin: 0 0 30px;
+    }
+
+    /* PLANT GRID */
+    .plants {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .plant { min-width: 0; }
+
+    .plant-image {
+  position: relative;
+  overflow: hidden;
+}
+
+.plant-image-toggle {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  text-align: inherit;
+}
+
+.plant-image-toggle img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.plant-image-toggle .photo-hover {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Desktop: change photo on hover */
+@media (hover: hover) and (pointer: fine) {
+  .plant-image-toggle:hover .photo-hover {
+    opacity: 1;
+  }
+}
+
+/* Mobile: show the alternate photo when tapped */
+.plant-image-toggle.is-swapped .photo-hover {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .plant-image-toggle .photo-hover {
+    transition: none;
+  }
+}
+
+   /* 1. Make the wrapper a perfect square box */
+.plant-image {
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  overflow: hidden; /* Keeps everything cleanly inside the square */
+  margin-bottom: 10px;
+}
+
+/* 2. Force the actual image inside to fill that box completely */
+.plant-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Fills the square perfectly without stretching the plums */
+}
+
+    .plant-name { font-size: 19px; margin-bottom: 5px; }
+    .plant-description { font-size: 14px; line-height: 1.5; }
+    .plant-price { margin-top: 12px; font-size: 14px; }
+
+    /* ABOUT */
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 55px;
+    }
+
+    .about-image { min-height: 350px; }
+
+    /* ORDERING / FAQ / CONTACT */
+    .info {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 50px;
+    }
+
+    .info h3 {
+      font-size: 24px;
+      font-weight: normal;
+      margin-top: 0;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 35px 0 60px;
+      font-size: 14px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* MOBILE: makes the site work on phones. */
+    @media (max-width: 800px) {
+      .site { padding: 0 20px; }
+      .header-inner { display: block; }
+      nav { margin-top: 20px; }
+      nav a { margin: 0 18px 0 0; }
+      .hero { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 45px; }
+      .plants { grid-template-columns: repeat(2, 1fr); }
+      .about, .info { grid-template-columns: 1fr; }
+      footer { display: block; }
+    }
+
+    @media (max-width: 500px) {
+      .plants { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="site">
+
+  <!-- =======================================================
+       HEADER
+       Change the site name and menu here.
+       ======================================================= -->
+  <header>
+    <div class="header-inner">
+      <!-- CHANGE THIS TEXT -->
+      <div class="site-name">None of Yo Beeswax</div>
+
+      <nav>
+        <a href="#home">home</a>
+        <a href="#plants">plants</a>
+        <a href="#about">about</a>
+        <a href="#ordering">ordering</a>
+        <a href="#contact">contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- =======================================================
+       HERO / TOP OF PAGE
+       ======================================================= -->
+  <section class="hero" id="home">
+    <div>
+      <!-- CHANGE YOUR MAIN HEADLINE HERE -->
+      <h1>
+        2026 Tree List + Availability + Info
+      </h1>
+
+      <!-- CHANGE YOUR INTRODUCTION HERE -->
+      <p>
+        Note: All trees are cold-hardy in our area (downeast Maine).
+      </p>
+
+      <!-- Change the words if you want; keep href="#plants" to jump to plants. -->
+      <p><a href="#plants">browse plants →</a></p>
+    </div>
+
+    <!-- =====================================================
+         PHOTO PLACEHOLDER
+         ===================================================== -->
+    <div class="img">
+      <img src="images/sorbuscropped.jpg" alt="Bentwood Gate">
+    </div>
+  </section>
+
+  <!-- =======================================================
+       PLANTS
+       ======================================================= -->
+  <section id="plants">
+    <h2>2026 Tree List + Availability + Info</h2>
+
+    <div class="plants">
+
+      <!-- PLANT 1: Shagbark Hickory -->
+      <article class="plant">
+        <div class="plant-image"><img src="images/shagbarkpotted.jpg" alt="potted shagbarks"></div>
+        <div class="plant-name">Shagbark Hickory (<i>Carya ovata</i>)</div>
+        <div class="plant-description">
+          From productive and cold hardy trees in upstate NY. Zones 4-8.
+        </div>
+        <div class="plant-price">$10 &nbsp; bare root</div>
+      </article>
+
+      <!-- PLANT 2: Beach Plum -->
+      <article class="plant">
+        <div class="plant-image"><img src="images/Beach Plum.jpg" alt="Beach Plum fruiting"></div>
+        <div class="plant-name">Beach Plum (<i>Prunus maritima</i>)</div>
+        <div class="plant-description">
+          Seedlings of the most productive shrub in my neighborhood. Great for fresh eating, but most prized in jams and pies. Native to Maine, but supposedly endangered. Zone 3-8.
+        </div>
+        <div class="plant-price">$10 &nbsp; bare root</div>
+      </article>
+
+      <!-- PLANT 3: Siberian C Peach -->
+      <article class="plant">
+        <div class="plant-image"><img src="images/siberianpeach.jpg" alt="Baby Siberian C Peach plants in an air prune bed."></div>
+        <div class="plant-name">Siberian C Peach (<i>Prunus persica</i>)</div>
+        <div class="plant-description">
+          Seedlings grown from seed sourced from Vermont (Zone 4!). A hardy peach that is supposedly brown rot resistant.
+        </div>
+        <div class="plant-price">$10 &nbsp; bare root</div>
+      </article>
+
+      <!-- PLANT 4: American Elderberry -->
+      <article class="plant">
+        <div class="plant-image"><img src="images/elderfruit.jpg" alt="Elderberries"></div>
+        <div class="plant-name">American Elderberry (<i>Sambucus canadensis</i>)</div>
+        <div class="plant-description">
+          Rooted cuttings of a vigorous and productive shrub in my landscape, Native. Limited amount of ‘Bob Gordon’ cultivar elders. Also some untagged cultivars in the mix that originally came from Edible Acres nursery. Zone 4.
+        </div>
+        <div class="plant-price">$12 &nbsp; bare root</div>
+      </article>
+
+      <!-- PLANT 5: American Chestnut -->
+      <article class="plant">
+        <div class="plant-image"><img src="images/americanchestnuts.jpg" alt="Air prune chestnuts"></div>
+        <div class="plant-name">American (?) Chestnut (<i>Castanea dentata</i>)</div>
+        <div class="plant-description">
+          I can’t prove they’re all-American without a genetics test, but they have all the American characteristics. Collected from populations in Hancock county and midcoast. Zones 4-8.
+        </div>
+        <div class="plant-price">$15 &nbsp; bare root</div>
+      </article>
+
+      <!-- PLANT 6: Hybrid Chestnut -->
+      <article class="plant">
+        <div class="plant-image"><img src="images/Chestnuts.jpg" alt="Air prune chestnuts"></div>
+        <div class="plant-name">Hybrid Chestnut (<i>Castanea spp.</i>)</div>
+        <div class="plant-description">
+          From seed source, Twisted Tree Farm: “One of the best strains of chestnut anywhere in the world. Seed for these trees are collected from select trees in a local established chestnut orchard in upstate NY. The trees are blight resistant and produce large beautiful chestnuts. They are open pollinated and seedlings may contain genes from American, Chinese, European, and Japanese chestnuts. Some of the mother trees include such cultivars as 'Willamette', 'Armstrong', 'Jersey Gem', 'Eaton', 'Mossbarger', as well as many other outstanding hybrids. This is our most proven strain of chestnut and the best for northern climates. Hardy to zone 4.”
+        </div>
+        <div class="plant-price">$15 &nbsp; bare root</div>
+      </article>
+
+      <!-- PLANT 7: Black Walnut -->
+      <article class="plant">
+        <div class="plant-image"><img src="images/blackwalnuts.jpg" alt="black walnut nuts"></div>
+        <div class="plant-name">Black Walnut (<i>Juglans nigra</i>)</div>
+        <div class="plant-description">
+          Rarely found in downeast Maine, but seed collected from MDI. One of the most Native to the eastern US. Zone 4.
+        </div>
+        <div class="plant-price">$10 &nbsp; bare root</div>
+      </article>
+
+      <!-- PLANT 8: American Persimmon -->
+      <article class="plant">
+        <div class="plant-image"><img src="images/persimmon.jpg" alt="Beach Plum fruiting"></div>
+        <div class="plant-name">American Persimmon (<i>Diospyros virginiana</i>)</div>
+        <div class="plant-description">
+          Seed from Twisted Tree Farm, proven cold hardy genetics. Native to the eastern US. Zone 5, possibly 4.
+        </div>
+        <div class="plant-price">$12 &nbsp; bare root</div>
+      </article>
+
+      <!-- PLANT 9: Pawpaw -->
+      <article class="plant">
+        <div class="plant-image"><img src="images/pawpawtree.jpg" alt="Baby Pawpaws"></div>
+        <div class="plant-name">Pawpaw (<i>Asimina triloba</i>)</div>
+        <div class="plant-description">
+          Seed from Twisted Tree Farm in NY and some from Maine (I have noted which are which, just ask if you have a preference). North America’s largest native fruit! So tropical and most are hooked from the first bite, myself included. I am planting as many of these in downeast Maine as I can manage. Zone 4/5.
+        </div>
+        <div class="plant-price"><s>$15 &nbsp; bare root</s> sold out!</div>
+      </article>
+
+      <!-- PLANT 10: Nanking Cherry -->
+      <article class="plant">
+        <div class="plant-image"><img src="images/nankingbed.jpg" alt="Beach Plum fruiting"></div>
+        <div class="plant-name">Nanking Cherry (<i>Prunus tomentosa</i>)</div>
+        <div class="plant-description">
+          Shrub cherry native to northern and western China. Zone 2-7.
+        </div>
+        <div class="plant-price">$12 &nbsp; bare root</div>
+      </article>
+
+      <!-- PLANT 11: Hybrid Hazelnut -->
+      <article class="plant">
+        <div class="plant-image"><img src="images/hazel.jpg" alt="Hazel in fall"></div>
+        <div class="plant-name">Hybrid Hazelnut (<i>Corylus spp.</i>)</div>
+        <div class="plant-description">
+          From seed sourced, Twisted Tree Farm: “Seed gathered from extremely productive hybrid hazel bushes here at Twisted Tree Farm. The mother plants originate largely from several breeding programs in the midwest and northeast. We have been planting hazelnuts from as many different genetic sources as possible since 2009. These are very tough plants that produce huge crops at a young age. Hardy to zone 3 and resistant to eastern filbert blight.”
+        </div>
+        <div class="plant-price">$12 &nbsp; bare root</div>
+      </article>
+
+      <!-- PLANT 12: Antonovka Apple -->
+      <article class="plant">
+        <div class="plant-image"><img src="images/antonovka.jpg" alt="Antonovka Apple"></div>
+        <div class="plant-name">Antonovka Apple / Антоновка обыкновенная (<i>Malus pumila</i>)</div>
+        <div class="plant-description">
+          Mega cold hardy seedling apple tree legendary in Russia. It has a reputation for being true to seed, which is unusual for apples, and is sometimes used to produce vigorous, standard sized rootstocks from seed, but I’ll be growing them for their beautiful yellow apples that store well. Zone 3. More info at this <a href="https://en.wikipedia.org/wiki/Antonovka" target="_blank">Wikipedia article</a>.<br><i>Note</i>16" tall
+        </div>
+        <div class="plant-price">$10 &nbsp; bare root</div>
+      </article>
+
+      <!-- PLANT 12: willows -->
+      <article class="plant">
+        <div class="plant-image"><img src="images/scarletcurlswillow.jpg" alt="scarletcurlswillow"></div>
+        <div class="plant-name">Willows <br>(<i>Salix spp</i>)</div>
+        <div class="plant-description">
+          Lots and lots of willows for basketry, biomass, and beauty. Willows are delightful and extremely diverse. Great for living structures, bank stabilization, basketry plantations, material for floral arangements, tree fodder, or if you just really want a fast growing tree/shrub.<br>Size varies from 6" - 6' (!)
+        </div>
+        <div class="plant-price">$10 &nbsp; bare root</div>
+      </article>
+
+      <article class="plant">
+        <div class="plant-image">
+    <button
+      class="plant-image-toggle"
+      type="button"
+      aria-label="Show another willow photo"
+      aria-pressed="false"
+    >
+      <img
+        class="photo-default"
+        src="images/scarletcurlswillow.jpg"
+        alt="Scarlet curl willow"
+      >
+      <img
+        class="photo-hover"
+        src="images/arcticwillow.jpg"
+        alt=""
+        aria-hidden="true"
+      >
+    </button>
+</div>
+<div class="plant-name">Willows <br>(<i>Salix spp</i>)</div>
+        <div class="plant-description">
+          Lots and lots of willows for basketry, biomass, and beauty. Willows are delightful and extremely diverse. Great for living structures, bank stabilization, basketry plantations, material for floral arangements, tree fodder, or if you just really want a fast growing tree/shrub.<br>Size varies from 6" - 6' (!)
+        </div>
+        <div class="plant-price">$10 &nbsp; bare root</div>
+</article>
+  </div>
+
+
+    </div>
+  </section>
+
+  <!-- =======================================================
+       ABOUT
+       ======================================================= -->
+  <section id="about">
+    <div class="about">
+
+    
+
+      <div>
+        <h2>About</h2>
+
+        <!-- CHANGE THIS TEXT -->
+        <p>
+          
+        </p>
+
+        <!-- CHANGE THIS TEXT TOO -->
+        <p>
+          PLUM FIGHTER
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =======================================================
+       ORDERING / FAQ / CONTACT
+       ======================================================= -->
+  <section id="ordering">
+    <div class="info">
+
+      <div>
+        <h3>ordering</h3>
+        <!-- CHANGE THIS TEXT -->
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+      </div>
+
+      <div>
+        <h3>faq</h3>
+        <!-- CHANGE THIS TEXT -->
+        <p>
+          pawpaws are for dadjean
+        </p>
+      </div>
+
+      <div id="contact">
+        <h3>contact</h3>
+        <p>
+          Contact: Patrick Murphy<br>
+          (207) 610-2695
+        </p>
+
+        <p>
+          <a href="mailto:patjm1992@gmail.com">
+            patjm1992@gmail.com
+          </a>
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <!-- CHANGE THIS -->
+    <div>bentwood nursery</div>
+    <!-- CHANGE THIS -->
+    <div>maine</div>
+  </footer>
+
+</div>
+
+<script>
+  document.querySelectorAll(".plant-image-toggle").forEach(button => {
+    button.addEventListener("click", () => {
+      const isSwapped = button.classList.toggle("is-swapped");
+
+      button.setAttribute("aria-pressed", isSwapped);
+      button.setAttribute(
+        "aria-label",
+        isSwapped
+          ? "Show original willow photo"
+          : "Show another willow photo"
+      );
+    });
+  });
+</script>
+
+</body>
+</html>

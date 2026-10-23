@@ -132,46 +132,89 @@
   overflow: hidden;
 }
 
-.plant-image-toggle {
-  display: block;
+/* Two-photo plant images: the second photo fades in on desktop hover. */
+.plant-image {
   position: relative;
+  aspect-ratio: 1 / 1;
   width: 100%;
-  height: 100%;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  cursor: pointer;
-  text-align: inherit;
+  overflow: hidden;
+  margin-bottom: 10px;
 }
 
-.plant-image-toggle img {
+.plant-image > img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.plant-image-toggle .photo-hover {
+.plant-image .photo-hover {
   position: absolute;
   inset: 0;
+  z-index: 1;
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.28s ease;
+  pointer-events: none;
 }
 
-/* Desktop: change photo on hover */
 @media (hover: hover) and (pointer: fine) {
-  .plant-image-toggle:hover .photo-hover {
+  .plant-image.has-alt:hover .photo-hover {
     opacity: 1;
   }
 }
 
-/* Mobile: show the alternate photo when tapped */
-.plant-image-toggle.is-swapped .photo-hover {
+/* The swapped class is used on touch screens when the image is tapped. */
+.plant-image.has-alt.is-swapped .photo-hover {
   opacity: 1;
 }
 
+/* Small, low-contrast dots are shown on touch devices only. */
+.photo-indicators {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  bottom: 10px;
+  transform: translateX(-50%);
+  display: none;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 8px;
+  border-radius: 999px;
+  background: rgb(0 0 0 / 20%);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+}
+
+.photo-dot {
+  display: block;
+  width: 6px;
+  height: 6px;
+  padding: 0;
+  border: 1px solid rgb(255 255 255 / 85%);
+  border-radius: 50%;
+  background: rgb(255 255 255 / 45%);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.photo-dot.is-active {
+  background: #fff;
+  transform: scale(1.12);
+}
+
+.photo-dot:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+@media (hover: none), (pointer: coarse) {
+  .plant-image.has-alt .photo-indicators {
+    display: flex;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .plant-image-toggle .photo-hover {
+  .plant-image .photo-hover {
     transition: none;
   }
 }
@@ -302,10 +345,11 @@
     <h2>2026 Tree List + Availability + Info</h2>
 
     <div class="plants">
+      <!-- For any plant with a second photo, set its wrapper to data-alt-src="images/second-photo.jpg". -->
 
       <!-- PLANT 1: Shagbark Hickory -->
       <article class="plant">
-        <div class="plant-image"><img src="images/shagbarkpotted.jpg" alt="potted shagbarks"></div>
+        <div class="plant-image" data-alt-src=""><img src="images/shagbarkpotted.jpg" alt="potted shagbarks"></div>
         <div class="plant-name">Shagbark Hickory (<i>Carya ovata</i>)</div>
         <div class="plant-description">
           From productive and cold hardy trees in upstate NY. Zones 4-8.
@@ -315,7 +359,7 @@
 
       <!-- PLANT 2: Beach Plum -->
       <article class="plant">
-        <div class="plant-image"><img src="images/Beach Plum.jpg" alt="Beach Plum fruiting"></div>
+        <div class="plant-image" data-alt-src=""><img src="images/Beach Plum.jpg" alt="Beach Plum fruiting"></div>
         <div class="plant-name">Beach Plum (<i>Prunus maritima</i>)</div>
         <div class="plant-description">
           Seedlings of the most productive shrub in my neighborhood. Great for fresh eating, but most prized in jams and pies. Native to Maine, but supposedly endangered. Zone 3-8.
@@ -325,7 +369,7 @@
 
       <!-- PLANT 3: Siberian C Peach -->
       <article class="plant">
-        <div class="plant-image"><img src="images/siberianpeach.jpg" alt="Baby Siberian C Peach plants in an air prune bed."></div>
+        <div class="plant-image" data-alt-src=""><img src="images/siberianpeach.jpg" alt="Baby Siberian C Peach plants in an air prune bed."></div>
         <div class="plant-name">Siberian C Peach (<i>Prunus persica</i>)</div>
         <div class="plant-description">
           Seedlings grown from seed sourced from Vermont (Zone 4!). A hardy peach that is supposedly brown rot resistant.
@@ -335,7 +379,7 @@
 
       <!-- PLANT 4: American Elderberry -->
       <article class="plant">
-        <div class="plant-image"><img src="images/elderfruit.jpg" alt="Elderberries"></div>
+        <div class="plant-image" data-alt-src=""><img src="images/elderfruit.jpg" alt="Elderberries"></div>
         <div class="plant-name">American Elderberry (<i>Sambucus canadensis</i>)</div>
         <div class="plant-description">
           Rooted cuttings of a vigorous and productive shrub in my landscape, Native. Limited amount of ‘Bob Gordon’ cultivar elders. Also some untagged cultivars in the mix that originally came from Edible Acres nursery. Zone 4.
@@ -345,7 +389,7 @@
 
       <!-- PLANT 5: American Chestnut -->
       <article class="plant">
-        <div class="plant-image"><img src="images/americanchestnuts.jpg" alt="Air prune chestnuts"></div>
+        <div class="plant-image" data-alt-src=""><img src="images/americanchestnuts.jpg" alt="Air prune chestnuts"></div>
         <div class="plant-name">American (?) Chestnut (<i>Castanea dentata</i>)</div>
         <div class="plant-description">
           I can’t prove they’re all-American without a genetics test, but they have all the American characteristics. Collected from populations in Hancock county and midcoast. Zones 4-8.
@@ -355,7 +399,7 @@
 
       <!-- PLANT 6: Hybrid Chestnut -->
       <article class="plant">
-        <div class="plant-image"><img src="images/Chestnuts.jpg" alt="Air prune chestnuts"></div>
+        <div class="plant-image" data-alt-src=""><img src="images/Chestnuts.jpg" alt="Air prune chestnuts"></div>
         <div class="plant-name">Hybrid Chestnut (<i>Castanea spp.</i>)</div>
         <div class="plant-description">
           From seed source, Twisted Tree Farm: “One of the best strains of chestnut anywhere in the world. Seed for these trees are collected from select trees in a local established chestnut orchard in upstate NY. The trees are blight resistant and produce large beautiful chestnuts. They are open pollinated and seedlings may contain genes from American, Chinese, European, and Japanese chestnuts. Some of the mother trees include such cultivars as 'Willamette', 'Armstrong', 'Jersey Gem', 'Eaton', 'Mossbarger', as well as many other outstanding hybrids. This is our most proven strain of chestnut and the best for northern climates. Hardy to zone 4.”
@@ -365,7 +409,7 @@
 
       <!-- PLANT 7: Black Walnut -->
       <article class="plant">
-        <div class="plant-image"><img src="images/blackwalnuts.jpg" alt="black walnut nuts"></div>
+        <div class="plant-image" data-alt-src=""><img src="images/blackwalnuts.jpg" alt="black walnut nuts"></div>
         <div class="plant-name">Black Walnut (<i>Juglans nigra</i>)</div>
         <div class="plant-description">
           Rarely found in downeast Maine, but seed collected from MDI. One of the most Native to the eastern US. Zone 4.
@@ -375,7 +419,7 @@
 
       <!-- PLANT 8: American Persimmon -->
       <article class="plant">
-        <div class="plant-image"><img src="images/persimmon.jpg" alt="Beach Plum fruiting"></div>
+        <div class="plant-image" data-alt-src=""><img src="images/persimmon.jpg" alt="Beach Plum fruiting"></div>
         <div class="plant-name">American Persimmon (<i>Diospyros virginiana</i>)</div>
         <div class="plant-description">
           Seed from Twisted Tree Farm, proven cold hardy genetics. Native to the eastern US. Zone 5, possibly 4.
@@ -385,7 +429,7 @@
 
       <!-- PLANT 9: Pawpaw -->
       <article class="plant">
-        <div class="plant-image"><img src="images/pawpawtree.jpg" alt="Baby Pawpaws"></div>
+        <div class="plant-image" data-alt-src=""><img src="images/pawpawtree.jpg" alt="Baby Pawpaws"></div>
         <div class="plant-name">Pawpaw (<i>Asimina triloba</i>)</div>
         <div class="plant-description">
           Seed from Twisted Tree Farm in NY and some from Maine (I have noted which are which, just ask if you have a preference). North America’s largest native fruit! So tropical and most are hooked from the first bite, myself included. I am planting as many of these in downeast Maine as I can manage. Zone 4/5.
@@ -395,7 +439,7 @@
 
       <!-- PLANT 10: Nanking Cherry -->
       <article class="plant">
-        <div class="plant-image"><img src="images/nankingbed.jpg" alt="Beach Plum fruiting"></div>
+        <div class="plant-image" data-alt-src=""><img src="images/nankingbed.jpg" alt="Beach Plum fruiting"></div>
         <div class="plant-name">Nanking Cherry (<i>Prunus tomentosa</i>)</div>
         <div class="plant-description">
           Shrub cherry native to northern and western China. Zone 2-7.
@@ -405,7 +449,7 @@
 
       <!-- PLANT 11: Hybrid Hazelnut -->
       <article class="plant">
-        <div class="plant-image"><img src="images/hazel.jpg" alt="Hazel in fall"></div>
+        <div class="plant-image" data-alt-src=""><img src="images/hazel.jpg" alt="Hazel in fall"></div>
         <div class="plant-name">Hybrid Hazelnut (<i>Corylus spp.</i>)</div>
         <div class="plant-description">
           From seed sourced, Twisted Tree Farm: “Seed gathered from extremely productive hybrid hazel bushes here at Twisted Tree Farm. The mother plants originate largely from several breeding programs in the midwest and northeast. We have been planting hazelnuts from as many different genetic sources as possible since 2009. These are very tough plants that produce huge crops at a young age. Hardy to zone 3 and resistant to eastern filbert blight.”
@@ -415,7 +459,7 @@
 
       <!-- PLANT 12: Antonovka Apple -->
       <article class="plant">
-        <div class="plant-image"><img src="images/antonovka.jpg" alt="Antonovka Apple"></div>
+        <div class="plant-image" data-alt-src=""><img src="images/antonovka.jpg" alt="Antonovka Apple"></div>
         <div class="plant-name">Antonovka Apple / Антоновка обыкновенная (<i>Malus pumila</i>)</div>
         <div class="plant-description">
           Mega cold hardy seedling apple tree legendary in Russia. It has a reputation for being true to seed, which is unusual for apples, and is sometimes used to produce vigorous, standard sized rootstocks from seed, but I’ll be growing them for their beautiful yellow apples that store well. Zone 3. More info at this <a href="https://en.wikipedia.org/wiki/Antonovka" target="_blank">Wikipedia article</a>.<br><i>Note</i>16" tall
@@ -423,35 +467,17 @@
         <div class="plant-price">$10 &nbsp; bare root</div>
       </article>
 
-      <!-- PLANT 12: willows -->
+      <!-- Willows: two photos -->
       <article class="plant">
-        <div class="plant-image"><img src="images/scarletcurlswillow.jpg" alt="scarletcurlswillow"></div>
-        <div class="plant-name">Willows <br>(<i>Salix spp</i>)</div>
+        <div class="plant-image" data-alt-src="images/arcticwillow.jpg">
+          <img class="photo-default" src="images/scarletcurlswillow.jpg" alt="Scarlet curl willow">
+        </div>
+<div class="plant-name">Willows <br>(<i>Salix spp</i>)</div>
         <div class="plant-description">
           Lots and lots of willows for basketry, biomass, and beauty. Willows are delightful and extremely diverse. Great for living structures, bank stabilization, basketry plantations, material for floral arangements, tree fodder, or if you just really want a fast growing tree/shrub.<br>Size varies from 6" - 6' (!)
         </div>
         <div class="plant-price">$10 &nbsp; bare root</div>
-      </article>
-
-        <div class="plant-image">
-    <button
-      class="plant-image-toggle"
-      type="button"
-      aria-label="Show another willow photo"
-      aria-pressed="false"
-    >
-      <img
-        class="photo-default"
-        src="images/scarletcurlswillow.jpg"
-        alt="Scarlet curl willow"
-      >
-      <img
-        class="photo-hover"
-        src="images/arcticwillow.jpg"
-        alt=""
-        aria-hidden="true"
-      >
-    </button>
+</article>
   </div>
 
 
@@ -533,17 +559,60 @@
 </div>
 
 <script>
-  document.querySelectorAll(".plant-image-toggle").forEach(button => {
-    button.addEventListener("click", () => {
-      const isSwapped = button.classList.toggle("is-swapped");
+  document.querySelectorAll('#plants .plant-image').forEach(container => {
+    const alternateSrc = container.dataset.altSrc?.trim();
+    const firstImage = container.querySelector('img');
 
-      button.setAttribute("aria-pressed", isSwapped);
-      button.setAttribute(
-        "aria-label",
-        isSwapped
-          ? "Show original willow photo"
-          : "Show another willow photo"
-      );
+    // A second image path must be supplied before this listing can switch photos.
+    if (!alternateSrc || !firstImage) return;
+
+    container.classList.add('has-alt');
+
+    const secondImage = document.createElement('img');
+    secondImage.className = 'photo-hover';
+    secondImage.src = alternateSrc;
+    secondImage.alt = container.dataset.altAlt || '';
+    secondImage.setAttribute('aria-hidden', 'true');
+    secondImage.loading = 'lazy';
+    container.appendChild(secondImage);
+
+    const indicators = document.createElement('div');
+    indicators.className = 'photo-indicators';
+    indicators.setAttribute('role', 'group');
+    indicators.setAttribute('aria-label', 'Choose plant photo');
+
+    const dots = [0, 1].map(index => {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'photo-dot' + (index === 0 ? ' is-active' : '');
+      dot.setAttribute('aria-label', `Show photo ${index + 1}`);
+      dot.setAttribute('aria-pressed', String(index === 0));
+      dot.addEventListener('click', event => {
+        event.stopPropagation();
+        setPhoto(index);
+      });
+      indicators.appendChild(dot);
+      return dot;
+    });
+
+    container.appendChild(indicators);
+
+    function setPhoto(index) {
+      const showAlternate = index === 1;
+      container.classList.toggle('is-swapped', showAlternate);
+      dots.forEach((dot, dotIndex) => {
+        const active = dotIndex === index;
+        dot.classList.toggle('is-active', active);
+        dot.setAttribute('aria-pressed', String(active));
+      });
+    }
+
+    // Desktop uses hover; touch devices toggle the photo by tapping the image.
+    container.addEventListener('click', event => {
+      if (event.target.closest('.photo-dot')) return;
+      const isDesktopHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+      if (isDesktopHover) return;
+      setPhoto(container.classList.contains('is-swapped') ? 0 : 1);
     });
   });
 </script>
