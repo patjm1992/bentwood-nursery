@@ -127,6 +127,55 @@
 
     .plant { min-width: 0; }
 
+    .plant-image {
+  position: relative;
+  overflow: hidden;
+}
+
+.plant-image-toggle {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  text-align: inherit;
+}
+
+.plant-image-toggle img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.plant-image-toggle .photo-hover {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Desktop: change photo on hover */
+@media (hover: hover) and (pointer: fine) {
+  .plant-image-toggle:hover .photo-hover {
+    opacity: 1;
+  }
+}
+
+/* Mobile: show the alternate photo when tapped */
+.plant-image-toggle.is-swapped .photo-hover {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .plant-image-toggle .photo-hover {
+    transition: none;
+  }
+}
+
    /* 1. Make the wrapper a perfect square box */
 .plant-image {
   aspect-ratio: 1 / 1;
@@ -226,13 +275,12 @@
     <div>
       <!-- CHANGE YOUR MAIN HEADLINE HERE -->
       <h1>
-        Raise your had if you love your<br>
-        dad
+        2026 Tree List + Availability + Info
       </h1>
 
       <!-- CHANGE YOUR INTRODUCTION HERE -->
       <p>
-        If you love your mom's dad, then your dad is in jail. Let's make it happen.
+        Note: All trees are cold-hardy in our area (downeast Maine).
       </p>
 
       <!-- Change the words if you want; keep href="#plants" to jump to plants. -->
@@ -241,10 +289,6 @@
 
     <!-- =====================================================
          PHOTO PLACEHOLDER
-         Replace this whole div with your own image later.
-         Example:
-
-         <img src="images/bentwood gate.HEIC" alt="Bentwood Gate">
          ===================================================== -->
     <div class="img">
       <img src="images/sorbuscropped.jpg" alt="Bentwood Gate">
@@ -253,128 +297,162 @@
 
   <!-- =======================================================
        PLANTS
-       Copy an entire <article class="plant"> block to add
-       another plant.
        ======================================================= -->
   <section id="plants">
-    <h2>2026 fall plant availability list + info</h2>
+    <h2>2026 Tree List + Availability + Info</h2>
 
     <div class="plants">
 
-      <!-- PLANT 1 -->
+      <!-- PLANT 1: Shagbark Hickory -->
       <article class="plant">
-        <!-- Replace this placeholder with your photo later. -->
-        <div class="plant-image"><img src="images/elderfruit.jpg" alt="Elderberries"></div>
-        <!-- CHANGE PLANT NAME -->
-        <div class="plant-name">elderberry</div>
-        <!-- CHANGE DESCRIPTION -->
+        <div class="plant-image"><img src="images/shagbarkpotted.jpg" alt="potted shagbarks"></div>
+        <div class="plant-name">Shagbark Hickory (<i>Carya ovata</i>)</div>
         <div class="plant-description">
-          Only girls buy elderberry fr fr
+          From productive and cold hardy trees in upstate NY. Zones 4-8.
         </div>
-        <!-- CHANGE PRICE -->
+        <div class="plant-price">$10 &nbsp; bare root</div>
+      </article>
+
+      <!-- PLANT 2: Beach Plum -->
+      <article class="plant">
+        <div class="plant-image"><img src="images/Beach Plum.jpg" alt="Beach Plum fruiting"></div>
+        <div class="plant-name">Beach Plum (<i>Prunus maritima</i>)</div>
+        <div class="plant-description">
+          Seedlings of the most productive shrub in my neighborhood. Great for fresh eating, but most prized in jams and pies. Native to Maine, but supposedly endangered. Zone 3-8.
+        </div>
+        <div class="plant-price">$10 &nbsp; bare root</div>
+      </article>
+
+      <!-- PLANT 3: Siberian C Peach -->
+      <article class="plant">
+        <div class="plant-image"><img src="images/siberianpeach.jpg" alt="Baby Siberian C Peach plants in an air prune bed."></div>
+        <div class="plant-name">Siberian C Peach (<i>Prunus persica</i>)</div>
+        <div class="plant-description">
+          Seedlings grown from seed sourced from Vermont (Zone 4!). A hardy peach that is supposedly brown rot resistant.
+        </div>
+        <div class="plant-price">$10 &nbsp; bare root</div>
+      </article>
+
+      <!-- PLANT 4: American Elderberry -->
+      <article class="plant">
+        <div class="plant-image"><img src="images/elderfruit.jpg" alt="Elderberries"></div>
+        <div class="plant-name">American Elderberry (<i>Sambucus canadensis</i>)</div>
+        <div class="plant-description">
+          Rooted cuttings of a vigorous and productive shrub in my landscape, Native. Limited amount of ‘Bob Gordon’ cultivar elders. Also some untagged cultivars in the mix that originally came from Edible Acres nursery. Zone 4.
+        </div>
         <div class="plant-price">$12 &nbsp; bare root</div>
       </article>
 
-      <!-- PLANT 2 -->
+      <!-- PLANT 5: American Chestnut -->
       <article class="plant">
-        <div class="plant-image"><img src="images/pawpawtree.jpg" alt="Baby Pawpaws"></div>
-        <div class="plant-name">pawpaw</div>
+        <div class="plant-image"><img src="images/americanchestnuts.jpg" alt="Air prune chestnuts"></div>
+        <div class="plant-name">American (?) Chestnut (<i>Castanea dentata</i>)</div>
         <div class="plant-description">
-          overhyped weirdo fruit
-        </div>
-        <div class="plant-price"><s>$15 &nbsp; bare root</s> sold out!</div>
-      </article>
-
-      <!-- PLANT 3 -->
-      <article class="plant">
-        <div class="plant-image"><img src="images/Chestnuts.jpg" alt="Air prune chestnuts"><</div>
-        <div class="plant-name">chestnut</div>
-        <div class="plant-description">
-          guaranteed to die in like 25 years
+          I can’t prove they’re all-American without a genetics test, but they have all the American characteristics. Collected from populations in Hancock county and midcoast. Zones 4-8.
         </div>
         <div class="plant-price">$15 &nbsp; bare root</div>
       </article>
 
-      <!-- PLANT 4 -->
+      <!-- PLANT 6: Hybrid Chestnut -->
       <article class="plant">
-        <div class="plant-image"><img src="images/nankingbed.jpg" alt="Beach Plum fruiting"></div>
-        <div class="plant-name">nanking cherry</div>
+        <div class="plant-image"><img src="images/Chestnuts.jpg" alt="Air prune chestnuts"></div>
+        <div class="plant-name">Hybrid Chestnut (<i>Castanea spp.</i>)</div>
         <div class="plant-description">
-          wtf is a nanking cherry
+          From seed source, Twisted Tree Farm: “One of the best strains of chestnut anywhere in the world. Seed for these trees are collected from select trees in a local established chestnut orchard in upstate NY. The trees are blight resistant and produce large beautiful chestnuts. They are open pollinated and seedlings may contain genes from American, Chinese, European, and Japanese chestnuts. Some of the mother trees include such cultivars as 'Willamette', 'Armstrong', 'Jersey Gem', 'Eaton', 'Mossbarger', as well as many other outstanding hybrids. This is our most proven strain of chestnut and the best for northern climates. Hardy to zone 4.”
         </div>
-        <div class="plant-price">$12 &nbsp; bare root</div>
+        <div class="plant-price">$15 &nbsp; bare root</div>
       </article>
 
-      <!-- PLANT 5 -->
-      <article class="plant">
-        <div class="plant-image"><img src="images/persimmon.jpg" alt="Beach Plum fruiting"></div>
-        <div class="plant-name">persimmon</div>
-        <div class="plant-description">
-          no one knows what these are
-        </div>
-        <div class="plant-price">$12 &nbsp; bare root</div>
-      </article>
-
-       <!-- PLANT 6 -->
-      <article class="plant">
-        <div class="plant-image">YOUR PHOTO</div>
-        <div class="plant-name">Hazelnut</div>
-        <div class="plant-description">
-          If you don't buy this,  you're gay
-        </div>
-        <div class="plant-price">$12 &nbsp; bare root</div>
-      </article>
-
-       <!-- PLANT 7 -->
-      <article class="plant">
-        <div class="plant-image"><img src="images/shagbarkpotted.jpg" alt="potted shagbarks"></div>
-        <div class="plant-name">Shagbark Hickory</div>
-        <div class="plant-description">
-          Let's be real. No one wants to plant a hickory.
-        </div>
-        <div class="plant-price">$10 &nbsp; bare root</div>
-      </article>
-
-      <!-- PLANT 8-->
-      <article class="plant">
-        <div class="plant-image"><img src="images/Beach Plum.jpg" alt="Beach Plum fruiting"></div>
-        <div class="plant-name">Beach Plum</div>
-        <div class="plant-description">
-          Like regular plums, but notably worse
-        </div>
-        <div class="plant-price">$10 &nbsp; bare root</div>
-      </article>
-
-       <!-- PLANT 9-->
-      <article class="plant">
-        <div class="plant-image"><img src="images/scarletcurlswillow.jpg" alt="Dense willow leaves"></div>
-        <div class="plant-name">Willows</div>
-        <div class="plant-description">
-          alien plants
-        </div>
-        <div class="plant-price">$10 &nbsp; bare root</div>
-      </article>
-
-  <!-- PLANT 10-->
-      <article class="plant">
-        <div class="plant-image"><img src="images/siberianpeach.jpg" alt="Baby Siberian C Peach plants in an air prune bed."></div>
-        <div class="plant-name">Siberian C Peach</div>
-        <div class="plant-description">
-          alien plants
-        </div>
-        <div class="plant-price">$10 &nbsp; bare root</div>
-      </article>
-
-
-  <!-- PLANT11-->
+      <!-- PLANT 7: Black Walnut -->
       <article class="plant">
         <div class="plant-image"><img src="images/blackwalnuts.jpg" alt="black walnut nuts"></div>
-        <div class="plant-name">Black Walnut</div>
+        <div class="plant-name">Black Walnut (<i>Juglans nigra</i>)</div>
         <div class="plant-description">
-          alien plants
+          Rarely found in downeast Maine, but seed collected from MDI. One of the most Native to the eastern US. Zone 4.
         </div>
         <div class="plant-price">$10 &nbsp; bare root</div>
       </article>
+
+      <!-- PLANT 8: American Persimmon -->
+      <article class="plant">
+        <div class="plant-image"><img src="images/persimmon.jpg" alt="Beach Plum fruiting"></div>
+        <div class="plant-name">American Persimmon (<i>Diospyros virginiana</i>)</div>
+        <div class="plant-description">
+          Seed from Twisted Tree Farm, proven cold hardy genetics. Native to the eastern US. Zone 5, possibly 4.
+        </div>
+        <div class="plant-price">$12 &nbsp; bare root</div>
+      </article>
+
+      <!-- PLANT 9: Pawpaw -->
+      <article class="plant">
+        <div class="plant-image"><img src="images/pawpawtree.jpg" alt="Baby Pawpaws"></div>
+        <div class="plant-name">Pawpaw (<i>Asimina triloba</i>)</div>
+        <div class="plant-description">
+          Seed from Twisted Tree Farm in NY and some from Maine (I have noted which are which, just ask if you have a preference). North America’s largest native fruit! So tropical and most are hooked from the first bite, myself included. I am planting as many of these in downeast Maine as I can manage. Zone 4/5.
+        </div>
+        <div class="plant-price"><s>$15 &nbsp; bare root</s> sold out!</div>
+      </article>
+
+      <!-- PLANT 10: Nanking Cherry -->
+      <article class="plant">
+        <div class="plant-image"><img src="images/nankingbed.jpg" alt="Beach Plum fruiting"></div>
+        <div class="plant-name">Nanking Cherry (<i>Prunus tomentosa</i>)</div>
+        <div class="plant-description">
+          Shrub cherry native to northern and western China. Zone 2-7.
+        </div>
+        <div class="plant-price">$12 &nbsp; bare root</div>
+      </article>
+
+      <!-- PLANT 11: Hybrid Hazelnut -->
+      <article class="plant">
+        <div class="plant-image"><img src="images/hazel.jpg" alt="Hazel in fall"></div>
+        <div class="plant-name">Hybrid Hazelnut (<i>Corylus spp.</i>)</div>
+        <div class="plant-description">
+          From seed sourced, Twisted Tree Farm: “Seed gathered from extremely productive hybrid hazel bushes here at Twisted Tree Farm. The mother plants originate largely from several breeding programs in the midwest and northeast. We have been planting hazelnuts from as many different genetic sources as possible since 2009. These are very tough plants that produce huge crops at a young age. Hardy to zone 3 and resistant to eastern filbert blight.”
+        </div>
+        <div class="plant-price">$12 &nbsp; bare root</div>
+      </article>
+
+      <!-- PLANT 12: Antonovka Apple -->
+      <article class="plant">
+        <div class="plant-image"><img src="images/antonovka.jpg" alt="Antonovka Apple"></div>
+        <div class="plant-name">Antonovka Apple / Антоновка обыкновенная (<i>Malus pumila</i>)</div>
+        <div class="plant-description">
+          Mega cold hardy seedling apple tree legendary in Russia. It has a reputation for being true to seed, which is unusual for apples, and is sometimes used to produce vigorous, standard sized rootstocks from seed, but I’ll be growing them for their beautiful yellow apples that store well. Zone 3. More info at this <a href="https://en.wikipedia.org/wiki/Antonovka" target="_blank">Wikipedia article</a>.<br><i>Note</i>16" tall
+        </div>
+        <div class="plant-price">$10 &nbsp; bare root</div>
+      </article>
+
+      <!-- PLANT 12: willows -->
+      <article class="plant">
+        <div class="plant-image"><img src="images/scarletcurlswillow.jpg" alt="scarletcurlswillow"></div>
+        <div class="plant-name">Willows <br>(<i>Salix spp</i>)</div>
+        <div class="plant-description">
+          Lots and lots of willows for basketry, biomass, and beauty. Willows are delightful and extremely diverse. Great for living structures, bank stabilization, basketry plantations, material for floral arangements, tree fodder, or if you just really want a fast growing tree/shrub.<br>Size varies from 6" - 6' (!)
+        </div>
+        <div class="plant-price">$10 &nbsp; bare root</div>
+      </article>
+
+        <div class="plant-image">
+    <button
+      class="plant-image-toggle"
+      type="button"
+      aria-label="Show another willow photo"
+      aria-pressed="false"
+    >
+      <img
+        class="photo-default"
+        src="images/scarletcurlswillow.jpg"
+        alt="Scarlet curl willow"
+      >
+      <img
+        class="photo-hover"
+        src="images/arcticwillow.jpg"
+        alt=""
+        aria-hidden="true"
+      >
+    </button>
+  </div>
 
 
     </div>
@@ -389,12 +467,11 @@
     
 
       <div>
-        <h2>about</h2>
+        <h2>About</h2>
 
         <!-- CHANGE THIS TEXT -->
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          
         </p>
 
         <!-- CHANGE THIS TEXT TOO -->
@@ -430,19 +507,14 @@
 
       <div id="contact">
         <h3>contact</h3>
-        <!-- CHANGE THIS TEXT -->
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          Contact: Patrick Murphy<br>
+          (207) 610-2695
         </p>
 
-        <!-- =================================================
-             CHANGE BOTH EMAIL ADDRESSES BELOW.
-             Keep "mailto:" before the first one.
-             ================================================= -->
         <p>
-          <a href="mailto:YOUR-EMAIL@example.com">
-            YOUR-EMAIL@example.com
+          <a href="mailto:patjm1992@gmail.com">
+            patjm1992@gmail.com
           </a>
         </p>
       </div>
@@ -459,6 +531,22 @@
   </footer>
 
 </div>
+
+<script>
+  document.querySelectorAll(".plant-image-toggle").forEach(button => {
+    button.addEventListener("click", () => {
+      const isSwapped = button.classList.toggle("is-swapped");
+
+      button.setAttribute("aria-pressed", isSwapped);
+      button.setAttribute(
+        "aria-label",
+        isSwapped
+          ? "Show original willow photo"
+          : "Show another willow photo"
+      );
+    });
+  });
+</script>
 
 </body>
 </html>
